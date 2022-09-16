@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="Alumno" table="alumnos" catalog="m06">
+        <id name="id">
+            <column name="idAlumno"></column>
+            <generator class="increment"></generator>
+        </id>
+        <property name="nombre"></property>
+        <property name="nacionalidad"></property>
+        <property name="edad" type="integer"></property>
+        <list name="modulos" table="alumno_modulo" cascade="all-delete-orphan">
+            <key column="idAlumno"></key>
+            <list-index column="ORDEN"></list-index>
+            <many-to-many class="Modulo" column="idModulo"></many-to-many>
+        </list>
+    </class>
+</hibernate-mapping>
